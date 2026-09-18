@@ -1,0 +1,11 @@
+JDK folder: C:\Program Files\Java\jdk-21.0.12.1\
+
+Oracle download: https://www.oracle.com/in/database/technologies/xe-downloads.html
+
+Installation Guide: https://docs.oracle.com/en/database/oracle/oracle-database/21/xeinw/index.html
+
+
+Oracle: C:\app\Admin\product\21c\
+Oracle home: C:\app\Admin\product\21c\dbhomeXE
+
+Oracle 21C Express Edition

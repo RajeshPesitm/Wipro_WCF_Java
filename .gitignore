@@ -1,0 +1,38 @@
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+**/.metadata/
+
+# Java compiled files
+*.class
+bin/
+target/
+out/
+
+# Eclipse/Java generated files at ANY depth
+**/bin/
+**/target/
+**/out/
+
+# JDBC / local database files
+*.db
+*.sqlite
+*.sqlite3
+*.mv.db
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+*.iml
+
+# Temporary files
+*.tmp
+*.temp

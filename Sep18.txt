@@ -1,0 +1,776 @@
+SQL> create table Student(rno number primary key, name varchar(20), score number,grade char(1));
+ 
+Table created.
+ 
+SQL> desc Student
+
+Name                                      Null?    Type
+
+----------------------------------------- -------- ----------------------------
+
+RNO                                       NOT NULL NUMBER
+
+NAME                                               VARCHAR2(20)
+
+SCORE                                              NUMBER
+
+GRADE                                              CHAR(1)
+ 
+ 
+SQLException
+ 
+1.Download and extract ojdbc file
+http://www.java2s.com/Code/Jar/o/Downloadojdbc6jar.htm
+
+2.Launch eclipse
+
+3.Create a class with main method
+
+4.Follow the process to use jdbc
+
+	load driver
+
+	establish conn
+
+	prepare qry
+
+	execute qry
+
+	close conn
+
+5.Configure build path
+
+	Project -> Right click -> 
+
+				Build Path -> 
+
+					configure Build path -> 
+
+						Libraries -> 
+
+							ModulePath -> 
+
+								Add External Jar ->
+
+									browse to ojdbc -> 
+
+										Open -> 
+
+											Apply and Close
+ 
+6. Execute the class
+
+*******************
+
+ojdbc6.jar
+http://www.java2s.com/Code/Jar/o/Downloadojdbc6jar.htm
+ 
+MySQL workbench
+https://dev.mysql.com/downloads/workbench/
+https://static.javatpoint.com/src/jdbc/mysql-connector.jar
+
+download zip => Extract =>
+ 
+Project -> Right click -> Build Path -> configure Build path -> Libraries -> ModulePath -> Add External Jar ->browse to ojdbc -> Open -> Apply and Close 
+
+*************    
+ 
+1. Load Driver:
+
+     Class.forName("DriverName");
+
+    Class.forName("oracle.jdbc.driver.OracleDriver"); //Oracle DB 
+
+Class.forName("org.h2.Driver"); //H2 DB
+
+Class.forName("com.mysql.jdbc.Driver"); //MySQL
+ 
+2. Establish Connection - URL. UserName and Password
+
+     Connection con = DriverManager.getConnection(URL,UName,Pwd)
+ 
+   con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","password"); 
+
+//oracle
+
+Connection con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa",""); 
+
+//h2
+
+Connection 
+
+con=DriverManager.getConnection("jdbc:mysql://localhost:3306/sonoo","root","root"); //mySql
+ 
+StudentManagementSytem
+
+==========================
+
+Student
+
+	rno
+
+	name
+
+	score
+
+	grade
+
+StudentAdmin
+
+	boolean addStudentDetails(Student st)
+
+	boolean updStudentDetails(Student st)
+
+	boolean delStudentDetails(int rno)
+
+	boolean searchStudentDetails(int rno)
+
+	ArrayList<Student> viewAllStudentDetails()
+
+        …..
+
+DBUtil
+
+	Connection getConnection()
+
+MainClass
+
+	1. Add Student details
+
+	2. Update
+
+	3. Delete
+
+	4. Search
+
+	5. View All
+
+	…..
+
+ 
+-------
+
+class Student {
+
+	int rno;
+
+	String name;
+
+	int score;
+
+	String grade;
+
+	// add constr accessor/mutator 
+
+}
+
+class StudentAdmin {
+
+	boolean addStudentDetails(Student st)
+
+	{
+
+		boolean status = false;
+
+		//code
+
+		try{
+
+			Connection con = DBUtil.getConnection();
+
+			//Prepare Query
+
+			String qry ="insert into StudentTB values(?,?,?,?)";
+
+			PreparedStatement ps =	con.prepareStatment(qry);
+
+			ps.setInt(1,st.getRno());
+
+			ps.setString(2,st.getName());
+
+			ps.setInt(3,st.getScore());
+
+			ps.getString(4.st.getGrade());
+
+			//Execute Query
+
+			int count = ps.executeUpdate();
+
+			//Process Result
+
+			if(count == 1)
+
+				status = true;
+
+			//Close Connection
+
+				con.close();
+
+		}catch(Exception ex){
+
+			System.out.println(ex.getMessge());
+
+		}
+
+		return status;
+
+	}
+
+}
+
+class DBUtil{
+
+	public static Connection getConnection()	{
+
+		Connection conn = null;
+
+		try{
+ 
+			// 1. Load Driver:
+
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// 2. Establish Connection
+
+			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Scott","root","root"); //mySql
+
+		}catch(Exception ex){
+
+			System.out.println(ex.getMessge());
+
+		}
+
+		// 3. Return Connection
+
+		return conn;
+
+	}
+
+}
+ 
+	}	
+
+}
+
+class MainClass{
+
+	public static void main(String[] a)
+
+	{
+
+			//Menu - 1: Add
+
+			// invoke add function
+
+			//based on the sts received, accordingly inform the end user
+
+	}
+
+}
+
+
+
+
+
+--------------------
+----------------------------
+MVC:
+
+	Model View Controller
+ 
+		Model - business logic
+
+		View - presentation layer
+
+		Controller - validation layer between the view and model
+
+	---------------------
+
+Java Appn:
+
+	POJO/Bean
+
+		Bean class
+
+	DAO
+
+		DAO class
+
+	Service
+ 
+StudentManagement System
+
+Model:
+
+	pojo/bean
+
+		Student.java
+
+	untility
+
+		ScoreException.java
+
+		DBUtil.java
+
+	DataAccessO
+
+		StudentAdmin.java
+
+			addStude
+
+			updt
+
+			del
+
+View and Controller
+
+	Service
+
+		TestAdmin.java
+
+		…...
+
+ -----------------------------
+next
+------------------------------
+package smspkg.util;
+ 
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+ 
+public class DBUtil {
+
+	public static Connection getDBConnection() {
+
+		Connection con =null;
+
+		//code
+
+		try {
+
+			//1.load driver
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			//2.establish connection
+
+			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","wcf7sep","wcf7sep"); 
+
+		}
+
+		catch(Exception ex) {
+
+			System.out.println(ex.getMessage());
+
+		}
+
+		return con;
+
+	}
+
+}
+
+ ---------------------
+---------------------
+package smspkg.util;
+ 
+public class ScoreException extends Exception {
+
+	public ScoreException() {
+
+		super();
+
+	}
+
+	public ScoreException(String msg) {
+
+		super(msg);
+
+	}
+
+	@Override
+
+	public String toString() {
+
+		return "ScoreException [Score should be between 0 and 100 only]";
+
+	}
+
+}
+
+ ------------------------
+-----------------------
+
+package smspkg.studentservice;
+ 
+import java.util.Scanner;
+ 
+import smspkg.studentbean.Student;
+
+import smspkg.studentdao.StudentAdmin;
+
+import smspkg.util.ScoreException;
+ 
+public class TestStudent {
+ 
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		Student st = new Student();
+
+		StudentAdmin stAdmin = new StudentAdmin();
+
+		try {
+
+			System.out.println("Enter Student details: Rno/Name/Score");
+
+			int rno = sc.nextInt();
+
+			String name = sc.next();
+
+			int score = sc.nextInt();
+
+			if(score < 0 || score > 100)
+
+				throw new ScoreException("score not in the range of 0 to 100");
+
+			st.setRno(rno);
+
+			st.setName(name);
+
+			st.setScore(score);
+
+			st.setGrade(st.calcGrade());
+
+			boolean sts = stAdmin.addStudent(st);
+
+			if(sts) 
+
+				System.out.println("Details added");
+
+			else
+
+				System.out.println("Details could not be added");
+
+			System.out.println("Current List of Students");
+
+			stAdmin.displayStudents();
+
+		}
+
+		catch(Exception ex) {
+
+			System.out.println(ex.getMessage());
+
+		}
+
+		finally {
+
+			System.out.println("Thank you...!");
+
+		}
+
+	}
+ 
+}
+
+ ---------------------------
+----------------------------
+package smspkg.studentdao;
+ 
+import java.sql.*;
+
+import java.util.ArrayList;
+
+import java.util.List;
+ 
+import smspkg.studentbean.Student;
+
+import smspkg.util.DBUtil;
+ 
+public class StudentAdmin {
+
+	List<Student> stList = new ArrayList<Student>();
+
+	public boolean addStudent(Student st) {
+
+		boolean sts = false;
+
+		//code
+
+		try {
+
+			if(st!=null) {
+
+				//stList.add(st); 
+
+				//store/add the student details to Student_TB table in the Oracle DB
+
+				//1.load driver
+
+				//Class.forName("oracle.jdbc.driver.OracleDriver");
+
+				//2.establish connection
+
+				//Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","wcf7sep","wcf7sep"); 
+
+				Connection con =DBUtil.getDBConnection();
+
+				//3.prepare query
+
+				String qry ="insert into Student_TB values(?,?,?,?)";
+
+				PreparedStatement ps =	con.prepareStatement(qry);
+
+				ps.setInt(1,st.getRno());
+
+				ps.setString(2,st.getName());
+
+				ps.setInt(3,st.getScore());
+
+				ps.setString(4,st.getGrade());
+
+				//4.execute qry
+
+				int count = ps.executeUpdate();
+
+				//5.process result
+
+				if(count == 1)
+
+					sts=true;
+
+				//6.close connection
+
+				con.close();
+
+			}
+
+			else
+
+				throw new NullPointerException("Student object is null");
+
+		}
+
+		//catch(ClassNotFoundException clex) {
+
+			//System.out.println(clex.getMessage());
+
+		//}
+
+		catch(NullPointerException npex) {
+
+			System.out.println(npex.getMessage());
+
+		}
+
+		catch(Exception ex) {
+
+			System.out.println(ex.getMessage());
+
+		}
+
+		return sts;
+
+	}
+
+	public void displayStudents() {
+
+		/*int size = stList.size();
+
+		if(size == 0)
+
+			System.out.println("No students been added");
+
+		else {
+
+			for(Student st : stList)
+
+				System.out.println(st);
+
+		}*/
+
+		ArrayList<Student> stdList = new ArrayList<Student>();
+
+		//collect the student details from DB table to a list
+
+		try {
+
+			//1.load driver
+
+			//Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			//2.establish connection
+
+			//Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","wcf7sep","wcf7sep"); 
+
+			Connection con =DBUtil.getDBConnection();
+
+			//3.prepare query
+
+			String qry ="select * from Student_TB";
+
+			PreparedStatement ps =	con.prepareStatement(qry);
+
+			//4.execute qry
+
+			ResultSet rs = ps.executeQuery();
+
+			//5.process the result
+
+			while(rs.next()) {
+
+				int rno =rs.getInt("rno");
+
+				String name = rs.getString("name");
+
+				int score = rs.getInt("score");
+
+				String grade = rs.getString("grade");
+
+				Student std = new Student(rno,name,score,grade);
+
+				stdList.add(std);
+
+			}
+
+			stdList.forEach(System.out :: println);
+
+			//6.close connection
+
+			con.close();
+
+		}
+
+		catch(Exception ex) {
+
+			System.out.println(ex.getMessage());
+
+		}
+
+	}
+
+}
+
+ --------------------
+--------------------
+package smspkg.studentbean;
+ 
+public class Student {
+
+	private int rno;
+
+	private String name;
+
+	private int score;
+
+	private String grade;
+
+	public Student() {
+
+		super();
+
+	}
+
+	public Student(int rno, String name, int score, String grade) {
+
+		super();
+
+		this.rno = rno;
+
+		this.name = name;
+
+		this.score = score;
+
+		this.grade = grade;
+
+	}
+
+	public int getRno() {
+
+		return rno;
+
+	}
+
+	public void setRno(int rno) {
+
+		this.rno = rno;
+
+	}
+
+	public String getName() {
+
+		return name;
+
+	}
+
+	public void setName(String name) {
+
+		this.name = name;
+
+	}
+
+	public int getScore() {
+
+		return score;
+
+	}
+
+	public void setScore(int score) {
+
+		this.score = score;
+
+	}
+
+	public String getGrade() {
+
+		return grade;
+
+	}
+
+	public void setGrade(String grade) {
+
+		this.grade = grade;
+
+	}
+
+	@Override
+
+	public String toString() {
+
+		return "Student [rno=" + rno + ", name=" + name + ", score=" + score + ", grade=" + grade + "]";
+
+	}
+
+	public String calcGrade() {
+
+		String grade = "no grade";
+
+		if(this.score >=90 && this.score <= 100)
+
+			grade = "A";
+
+		if(this.score >= 80 && this.score <= 89)
+
+			grade = "B";
+
+		if(this.score >= 70 && this.score <=79)
+
+			grade = "C";
+
+		else
+
+			grade = "D";
+
+		return grade;
+
+	}
+
+}
+
+ ----------------
+Download JDBC
+-----------------
+ https://www.codejava.net/java-se/jdbc/jdbc-driver-library-download
