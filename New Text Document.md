@@ -61,10 +61,10 @@ Connecting to oracle
 
 SQL> CREATE USER wcf IDENTIFIED  BY wcf123  
 // Trouble Shoot
-SQL> SHOW CON\_NAME;
+SQL> SHOW CON_NAME;
 
 
-SELECT name, open\_mode
+SELECT name, open_mode
 FROM v$pdbs;
 
 
@@ -75,7 +75,7 @@ SQL> ALTER SESSION SET CONTAINER = XEPDB1;
 
 
 
-SQL> SHOW CON\_NAME;
+SQL> SHOW CON_NAME;
 
 
 

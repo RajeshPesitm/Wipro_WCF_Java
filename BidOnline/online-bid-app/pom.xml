@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://apache.org" 
+         xmlns:xsi="http://w3.org"
+         xsi:schemaLocation="http://apache.org https://apache.org">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 1. Spring Boot Parent Configuration -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!-- 2. Project Metadata -->
+    <groupId>com.myauctionapp</groupId>
+    <artifactId>online-bid-app</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>online-bid-app</name>
+    <description>A real-time online bidding application using WebSockets and H2</description>
+
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+
+    <!-- 3. Core Dependencies -->
+    <dependencies>
+        <!-- Real-time Communication Framework -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
+        <!-- Database Management (ORM / Hibernate) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- In-Memory Database Engine -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Automated Testing Support -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- 4. Spring Boot Build Plugin -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
