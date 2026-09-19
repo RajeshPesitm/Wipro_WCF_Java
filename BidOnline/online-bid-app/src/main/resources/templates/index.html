@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Real-Time Online Bidding</title>
+    <!-- Pulling in the required WebSocket messaging libraries -->
+    <script src="https://jsdelivr.net"></script>
+    <script src="https://cloudflare.com"></script>
+    
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f6f9; }
+        .auction-card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 500px; }
+        .price-tag { font-size: 24px; color: #2e7d32; font-weight: bold; margin: 15px 0; }
+        .input-group { margin-top: 15px; }
+        input, button { padding: 10px; font-size: 16px; margin-right: 5px; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; border-radius: 4px; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <div class="auction-card">
+        <!-- Thymeleaf parses these variables dynamically from your backend model on load -->
+        <h2 id="item-title" th:text="${item.title}">Item Title Loading...</h2>
+        <p id="item-desc" th:text="${item.description}">Item Description Loading...</p>
+        
+        <div class="price-tag">
+            Current Highest Bid: $<span id="current-price" th:text="${item.currentPrice}">0.00</span>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="bidder-name" placeholder="Your Name" />
+            <input type="number" id="bid-amount" placeholder="Enter Amount" step="0.01" />
+            <button onclick="sendBid()">Place Live Bid</button>
+        </div>
+        <p id="status-message" style="color: red;"></p>
+    </div>
+
+    <script>
+        let stompClient = null;
+        // Fetch the item ID injected by the server context
+        const itemId = [[${item.id}]]; 
+
+        function connect() {
+            // Establish connection to the URL mapped in WebSocketConfig.java
+            const socket = new SockJS('/ws-auction');
+            stompClient = Stomp.over(socket);
+            
+            stompClient.connect({}, function (frame) {
+                console.log('Connected to network: ' + frame);
+                
+                // Subscribe to the public broadcast channel
+                stompClient.subscribe('/topic/bids', function (response) {
+                    // This triggers instantly whenever anyone places a successful bid!
+                    const updatedItem = JSON.parse(response.body);
+                    if (updatedItem.id === itemId) {
+                        document.getElementById('current-price').innerText = updatedItem.currentPrice.toFixed(2);
+                        document.getElementById('status-message').innerText = "";
+                    }
+                });
+            });
+        }
+
+        function sendBid() {
+            const name = document.getElementById('bidder-name').value;
+            const amount = parseFloat(document.getElementById('bid-amount').value);
+            
+            if(!name || isNaN(amount)) {
+                document.getElementById('status-message').innerText = "Please fill out both fields.";
+                return;
+            }
+
+            // Construct payload matching our BidController.BidMessage format
+            const payload = {
+                itemId: itemId,
+                bidderName: name,
+                amount: amount
+            };
+
+            // Shoot the data packet out over the network connection
+            stompClient.send("/app/place-bid", {}, JSON.stringify(payload));
+            document.getElementById('bid-amount').value = "";
+        }
+
+        // Auto-connect to WebSockets when the page opens in browser
+        window.onload = connect;
+    </script>
+</body>
+</html>
