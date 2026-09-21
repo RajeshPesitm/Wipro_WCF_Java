@@ -22,3 +22,16 @@ You found the exact root cause! Your network or internet provider is blocking or
 ```
 https://share.google/aimode/H8uhrfPNkPu0M7GZp
 
+
+### Fixed 
+```text
+Amazing job! Seeing the >>> CONNECT, <<< CONNECTED, and the frontend updates working in real-time across your clients means you have successfully built a fully functioning multi-user WebSocket infrastructure using Maven. That is a massive milestone!
+```
+
+### New Issue
+```text
+However, your backend console is showing an Unhandled exception from message handler method right after running its successful database SQL updates (insert into bids, update items).
+```
+
+https://share.google/aimode/yq3inCw7gsvu9GdYz
+

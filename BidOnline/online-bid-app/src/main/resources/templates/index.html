@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <title>Real-Time Online Bidding</title>
     <!-- Pulling in the required WebSocket messaging libraries -->
-    <script src="https://jsdelivr.net"></script>
-    <script src="https://cloudflare.com"></script>
+    <!-- Updated to load locally from your running Spring Boot server -->
+        <!-- Corrected version-agnostic paths for Spring Boot 3 -->
+    <script src="/webjars/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/2.3.4/stomp.min.js"></script>
+    
+
     
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f6f9; }
