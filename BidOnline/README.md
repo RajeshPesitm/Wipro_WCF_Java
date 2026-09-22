@@ -35,3 +35,12 @@ However, your backend console is showing an Unhandled exception from message han
 
 https://share.google/aimode/yq3inCw7gsvu9GdYz
 
+
+
+### Spent Some time on understanding WebSockets - Spring boot - database communication loop
+https://share.google/aimode/RY0aUohqEepTFQxmz
+
+
+### Based on this understanding Branch here to do list
+1. DataInitializer initialises n items using a loop (n is a console input, Also item details)
+2. index.html clients subscribed to /topic/bids renders all these items into frontend
