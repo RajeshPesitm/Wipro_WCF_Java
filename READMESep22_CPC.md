@@ -609,3 +609,22 @@ Type exit to close SQL*Plus, return to your project workspace, and run your Cand
 
 AI help
 https://share.google/aimode/KNkGjtwYXSekujzeE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Generate Test Suit Using Junit
+
+
+AI Help
+https://share.google/aimode/AzRfn8WAPjiXiSUBC
