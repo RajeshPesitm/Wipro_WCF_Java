@@ -1,4 +1,2 @@
-SELECT sequence_name
-FROM user_sequences
-ORDER BY sequence_nameed 
+CREATE TABLE ACCOUNT_TBL ( Account_Number VARCHAR2(10) PRIMARY KEY,  Customer_Name VARCHAR2(15),   Balance NUMBER(10,2))
 /
