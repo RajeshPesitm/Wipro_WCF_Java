@@ -1,38 +1,38 @@
-# Eclipse
-.classpath
-.project
-.settings/
-.metadata/
-**/.metadata/
-
-# Java compiled files
+# Java
 *.class
-bin/
+*.jar
+*.war
+*.ear
+
+# Maven
 target/
-out/
 
-# Eclipse/Java generated files at ANY depth
-**/bin/
-**/target/
-**/out/
+# Eclipse workspace
+.metadata/
+.history/
+tmp/
+bin/
 
-# JDBC / local database files
-*.db
-*.sqlite
-*.sqlite3
-*.mv.db
+# Spring Tools
+.springBeans
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
 
 # Logs
 *.log
 
-# OS files
-.DS_Store
-Thumbs.db
-
-# IDE files
-.idea/
-*.iml
-
-# Temporary files
-*.tmp
-*.temp
+# Environment / secrets
+.env
+.env.*
+!.env.example
