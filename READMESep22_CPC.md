@@ -1,3 +1,8 @@
+Oct 1: Steps to open user in oracle XE
+https://chatgpt.com/s/t_6abe516a15408191b23fb1ebc541dc9b
+Oct 1: Steps for oracle 11g older non container
+https://chatgpt.com/s/t_6abe52129c9481919b8e705880246417
+
 https://chatgpt.com/s/t_6ab0c98022fc819186c1b9a85384ee7b
 https://chatgpt.com/s/t_6ab0d1cae6588191a28dd48bf1d2a2f6
 https://chatgpt.com/s/t_6ab0d1aa1af081918ec4ec36de0e6e88
