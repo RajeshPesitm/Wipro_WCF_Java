@@ -1,3 +1,21 @@
+Oct 5: 
+oracle: IT laptop
+Destination Folder: C:\oraclexe\
+Oracle Home: C:\oraclexe\app\oracle\product\11.2.0\server\
+Oracle Base:C:\oraclexe\
+Port for 'Oracle Database Listener': 1521
+Port for 'Oracle Services for Microsoft Transaction Server': 2030
+Port for 'Oracle HTTP Listener': 8080
+
+Steps to create new user
+https://share.google/aimode/4JSF552lJh77JQPVZ
+
+Steps to delete user
+https://share.google/aimode/Rz8D03mUu0yrPMuk6
+
+
+
+
 Oct 1: Steps to open user in oracle XE
 https://chatgpt.com/s/t_6abe516a15408191b23fb1ebc541dc9b
 Oct 1: Steps for oracle 11g older non container

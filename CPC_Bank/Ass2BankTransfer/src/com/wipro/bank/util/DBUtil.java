@@ -11,7 +11,7 @@ public class DBUtil {
 		//write code here
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "B2026132613074", "B2026132613074");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "B2026132613074", "B2026132613074");
 		} catch (Exception e) {
 			System.out.println("[DBUtil Error] Connection failed! Details below:");
             //e.printStackTrace(); // This prints out the exact network/credential error
